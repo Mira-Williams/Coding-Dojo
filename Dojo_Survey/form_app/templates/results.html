@@ -7,9 +7,9 @@
 </head>
 <body>
     <h1>Profile Info:</h1>
-    <h2>Name: </h2> {{name}}
-    <h2>Language: </h2> {{language}}
-    <h2>Location: </h2>{{location}}
-    <h2>Hobbies / Interests: </h2> {{hobbies}}
+    <h2>Name: </h2> {{request.session.name}}
+    <h2>Language: </h2> {{request.session.language}}
+    <h2>Location: </h2>{{request.session.location}}
+    <h2>Hobbies / Interests: </h2> {{request.session.hobbies}}
 </body>
 </html>
