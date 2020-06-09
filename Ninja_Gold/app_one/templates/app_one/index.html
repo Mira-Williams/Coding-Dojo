@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <a href="/reset" class="btn btn-success reset inline">Start / Reset</a>
+    <h2 class="inline high_score">High Score: {{ request.session.high_score }}</h2>
+    <h2>Your Gold: {{ request.session.gold }}</h2>
+    <div class="container">
+        <div class="row">
+            <div class="col-md">
+                <div class="card">
+                    <div class="card-body">
+                        <h3>Cave</h3>
+                        <a href="/cave" class="btn btn-success">Search for Gold!</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="card">
+                    <div class="card-body">
+                        <h3>Old Castle</h3>
+                        <a href="/castle" class="btn btn-success">Search for Gold!</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="card">
+                    <div class="card-body">
+                        <h3>Shipwreck</h3>
+                        <a href="/ship" class="btn btn-success">Search for Gold!</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="card">
+                    <div class="card-body">
+                        <h3>Casino</h3>
+                        <a href="/casino" class="btn btn-success">Gamble!</a>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="col-md">
+                <div class="card">
+                    <div class="card-body">
+                        <h3>Reset</h3>
+                        <a href="/reset" class="btn btn-success">Start / Reset</a>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+    <h2>Daily Log:</h2>
+    {% for log in request.session.log reversed%}
+        <p>{{ log }}</p>
+    {% endfor %}
+    <!-- {{request.session.log}} -->
+</body>
+</html>
