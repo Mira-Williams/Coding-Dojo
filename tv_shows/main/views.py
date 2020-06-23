@@ -19,10 +19,17 @@ def add_form(request):
 def add_show(request):
     if request.method == 'POST':
         errors = Show.objects.validate(request.POST)
+        context = {
+            'title': request.POST['title'],
+            'network': request.POST['network'],
+            'release_date': request.POST['release_date'],
+            'description': request.POST['description']
+        }
         if errors:
             for error in errors:
                 messages.error(request, error)
-            return redirect('/add_form')
+            # return redirect('/add_form')
+            return render(request, 'add_form.html', context)
         show = Show.objects.create(
             title = request.POST['title'],
             network = request.POST['network'],
