@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Show
+from django.contrib import messages
 
-# Create your views here.
 
 def index(request):
     return redirect('/home')
@@ -18,13 +18,19 @@ def add_form(request):
 
 def add_show(request):
     if request.method == 'POST':
+        errors = Show.objects.validate(request.POST)
+        if errors:
+            for error in errors:
+                messages.error(request, error)
+            return redirect('/add_form')
         show = Show.objects.create(
             title = request.POST['title'],
             network = request.POST['network'],
             release_date = request.POST['release_date'],
-            description = request.POST['description']
+            description = request.POST['description'],
         )
     return redirect('/home')
+    
 
 def single_show_page(request, id):
     show = Show.objects.get(id=id)
@@ -42,13 +48,19 @@ def edit_show_form(request, id):
 
 def update_show(request, id):
     if request.method == 'POST':
-        show = Show.objects.get(id=id)
-        show.title = request.POST['title']
-        show.network = request.POST['network']
-        show.release_date = request.POST['release_date']
-        show.description = request.POST['description']
-        show.save()
-    return redirect(f'/single_show/{id}')
+        errors = Show.objects.validate_update(request.POST, id)
+        if errors:
+            for error in errors:
+                messages.error(request, error)
+                return redirect(f'/edit_show_form/{id}')
+        else:
+            show = Show.objects.get(id=id)
+            show.title = request.POST['title']
+            show.network = request.POST['network']
+            show.release_date = request.POST['release_date']
+            show.description = request.POST['description']
+            show.save()
+            return redirect(f'/single_show/{id}')
 
 def delete_alert(request, id):
     show = Show.objects.get(id=id)

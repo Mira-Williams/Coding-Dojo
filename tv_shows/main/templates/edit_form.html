@@ -9,6 +9,13 @@
 <body>
     <div class="container container-fluid border" style="margin-top: 20px;">
         <h1>Edit Show Details</h1>
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}    
+            </ul>
+        {% endif %}
         <form action="/update_show/{{show.id}}" method="post">
             {% csrf_token %}
             <div class="form-group">
