@@ -25,7 +25,9 @@
         {% for post in posts %}
             <div class='container border' style='margin-top: 5px; padding: 20px;'>
                 <p style='text-decoration: underline; display: inline;'>{{ post.user.full_name }} ({{ post.time }}):</p>
-                <a href="/delete_post/{{ post.id }}" style='display: inline;' class='float-right'>Delete</a>
+                {% if post.user.id == login_id and post.compare_time < 30 %}
+                    <a href="/delete_post/{{ post.id }}" style='display: inline;' class='float-right'>Delete</a>
+                {% endif %}
                 <p style='margin-top: 1rem;'>{{ post.content }}</p>
                 <a href="/add_like/{{ post.id }}" class="fa fa-thumbs-o-up"></a>
                 <p style='display: inline;'>{{ post.likes.count }}</p>&nbsp;
@@ -43,8 +45,10 @@
                 {% for comment in post.post_comments.all %}
                     <div class='container border' style='margin-top: 5px; padding: 10px;'>
                         <p style='text-decoration: underline; display: inline;'>{{ comment.user.full_name }} ({{ comment.time }}):</p>
-                        <a href="/delete_comment/{{ comment.id }}" style='display: inline;' class='float-right'>Delete</a>
-                        <p style='margin-top: 1rem;'>{{ comment.content }}</p>
+                        {% if comment.user.id == login_id and comment.compare_time < 30 %}
+                            <a href="/delete_comment/{{ comment.id }}" style='display: inline;' class='float-right'>Delete</a>
+                        {% endif %}
+                            <p style='margin-top: 1rem;'>{{ comment.content }}</p>
                         <a href="/add_comment_like/{{ comment.id }}" class="fa fa-thumbs-o-up"></a>
                         <p style='display: inline;'>{{ comment.likes.count }}</p>&nbsp;
                         <a href="/add_comment_dislike/{{ comment.id }}" class="fa fa-thumbs-o-down"></a>

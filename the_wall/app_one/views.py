@@ -30,7 +30,8 @@ def register(request):
 def the_wall(request):
     if 'login_id' in request.session:
         context={
-            'posts': Post.objects.all()
+            'posts': Post.objects.all(),
+            'login_id': request.session['login_id']
         }
         return render(request, 'the_wall.html', context)
     else:
