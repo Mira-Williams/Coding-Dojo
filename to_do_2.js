@@ -52,8 +52,9 @@ function filter_range(array, min, max){
 // filter_range(x, 4, 7)
 
 function concat(array_1, array_2){
+    arr_1_len = array_1.length
     for(var i = 0; i < array_2.length; i++){
-        array_1[array_1.length + i] = array_2[i]
+        array_1[arr_1_len + i] = array_2[i]
     }
     console.log(array_1)
 }
