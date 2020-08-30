@@ -54,5 +54,18 @@ class SLL {
         }
         return count
     }
+
+    display() {
+        array_vals = []
+        runner = this.head
+
+        while(runner){
+            array_vals.push(runner.data)
+            runner = runner.next
+        }
+
+        string_vals = array.join(', ')
+        return string_vals
+    }
 }
 
