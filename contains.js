@@ -43,5 +43,16 @@ class SLL {
         }
         return false
     }
+
+    length() {
+        count = 0
+        runner = this.head
+
+        while(runner){
+            count ++
+            runner = runner.next
+        }
+        return count
+    }
 }
 
