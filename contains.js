@@ -141,6 +141,59 @@ class SLL {
 
         return this.head
     }
+
+    sec_to_last(){
+        runner = this.head
+
+        if(this.length() < 3){
+            return runner.data
+        }
+
+        while(runner.next.next){
+            runner = runner.next
+        }
+
+        return runner.data
+    }
+
+    rem_self(value){
+        runner = this.head
+
+        while(runner){
+            if(runner.next.data === value){
+                runner.next = runner.next.next
+                return this.head
+            }
+            runner = runner.next
+        }
+    }
+
+    copy(){
+        runner = this.head
+        newSSL = new SSL()
+
+        while(runner){
+            newSSL.addFront(runner.data)
+            runner = runner.next
+        }
+
+        return newSSL.head
+    }
+
+    filter(low, high){
+        runner = this.head
+        if(runner.data < low || runner.data > high){
+            this.head = runner.next
+        }
+
+        while(runner){
+            if(runner.next.data < low || runner.next.data > high){
+                runner.next = runner.next.next
+            }
+        }
+
+        return this.head
+    }
 }
 
 
