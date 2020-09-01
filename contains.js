@@ -16,13 +16,13 @@ class SLL {
         newNode.next = this.head;
         this.head = newNode;
 
-        return this;
+        return this.head;
     }
 
     removeFront() {
         this.head = this.head.next;
 
-        return this;
+        return this.head;
     }
 
     front() {
@@ -108,5 +108,43 @@ class SLL {
         ave = sum / this.length()
         return ave
     }
+
+    back(){
+        runner = this.head
+
+        while(runner){
+            runner = runner.next
+        }
+
+        return runner.data
+    }
+
+    rem_back(){
+        runner = this.head
+
+        while(runner.next.next){
+            runner = runner.next
+        }
+
+        runner.next = null
+        return this.head
+    }
+
+    add_back(data){
+        runner = this.head
+
+        while(runner){
+            runner = runner.next
+        }
+
+        runner.next = new Node(data)
+
+        return this.head
+    }
 }
 
+
+// function ListNode(value) {
+//     this.val = value;
+//     this.next = null;
+// }
