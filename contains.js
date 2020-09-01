@@ -67,5 +67,46 @@ class SLL {
         string_vals = array.join(', ')
         return string_vals
     }
+
+    max() {
+        runner = this.head
+        max = runner.data;
+
+        while(runner) {
+            if (runner.data > max){
+                max = runner.data
+                runner = runner.next
+            }
+        }
+
+        return max
+    }
+
+    min() {
+        runner = this.head
+        min = runner.data
+
+        while(runner) {
+            if (runner.data < min){
+                min = runner.data
+                runner = runner.next
+            }
+        }
+
+        return min
+    }
+
+    average() {
+        runner = this.head
+        sum = 0
+
+
+        while(runner) {
+            sum += runner.data
+        }
+
+        ave = sum / this.length()
+        return ave
+    }
 }
 
