@@ -2,8 +2,6 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import *
 import random
-import time
-import string
 
 from .initialize import initialize
 
