@@ -39,4 +39,29 @@ def post_code():
     print (bool(re.match(regex_integer_in_range, P)) 
     and len(re.findall(regex_alternating_repetitive_digit_pair, P)) < 2)
 
+# filter Matrix script challenge
+    
+first_multiple_input = input().rstrip().split()
+
+n = int(first_multiple_input[0])
+
+m = int(first_multiple_input[1])
+
+matrix = []
+
+for _ in range(n):
+    matrix_item = input()
+    matrix.append(matrix_item)
+    
+x = ''
+
+for i in range(m):
+    for j in range(n):
+        x += matrix[j][i]
+        
+y = re.findall(r'\w+', x)
+z = re.findall(r'\W+$', x)
+a = ' '.join(y)
+b = a + z[0]
+print(b)
     
