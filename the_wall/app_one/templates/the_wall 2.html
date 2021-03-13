@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    
+    <div class='container border' style="margin-top: 20px; padding: 20px;">
+        <h2 style='display: inline;'>Welcome to the Wall, {{ request.session.login_first_name }}.</h2>
+        <a href="/logout" class='float-right' style='display: inline;'>Logout</a><br><br><br>
+        <form action="/process_post" method="POST">
+            {% csrf_token %}
+            <textarea name="post" id="" cols="60" rows="3" placeholder="Write a post" style='margin-top: -20px;'></textarea><br><br>
+            <button type="submit" class="btn btn-primary" style='margin-top: -35px;'>Submit</button>
+        </form>
+    </div>
+    
+    <div class="container-fluid">
+        {% for post in posts %}
+            <div class='container border' style='margin-top: 5px; padding: 20px;'>
+                <p style='text-decoration: underline; display: inline;'>{{ post.user.full_name }} ({{ post.time }}):</p>
+                {% if post.user.id == login_id and post.compare_time < 30 %}
+                    <a href="/delete_post/{{ post.id }}" style='display: inline;' class='float-right'>Delete</a>
+                {% endif %}
+                <p style='margin-top: 1rem;'>{{ post.content }}</p>
+                <a href="/add_like/{{ post.id }}" class="fa fa-thumbs-o-up"></a>
+                <p style='display: inline;'>{{ post.likes.count }}</p>&nbsp;
+                <a href="/add_dislike/{{ post.id }}" class="fa fa-thumbs-o-down"></a>
+                <p style='display: inline;'>{{ post.dislikes.count }}</p>
+
+                <div class='container border' style="margin-top: 20px;">
+                    <form action="add_comment/{{ post.id }}" method="POST" style='margin-top: 10px;'>
+                        {% csrf_token %}
+                        <textarea name="comment" id="" cols="30" rows="1" placeholder="Comment"></textarea><br>
+                        <button type="submit" class='btn btn-primary' style='margin-bottom: 10px;'>Submit</button>
+                    </form>
+                </div>
+
+                {% for comment in post.post_comments.all %}
+                    <div class='container border' style='margin-top: 5px; padding: 10px;'>
+                        <p style='text-decoration: underline; display: inline;'>{{ comment.user.full_name }} ({{ comment.time }}):</p>
+                        {% if comment.user.id == login_id and comment.compare_time < 30 %}
+                            <a href="/delete_comment/{{ comment.id }}" style='display: inline;' class='float-right'>Delete</a>
+                        {% endif %}
+                            <p style='margin-top: 1rem;'>{{ comment.content }}</p>
+                        <a href="/add_comment_like/{{ comment.id }}" class="fa fa-thumbs-o-up"></a>
+                        <p style='display: inline;'>{{ comment.likes.count }}</p>&nbsp;
+                        <a href="/add_comment_dislike/{{ comment.id }}" class="fa fa-thumbs-o-down"></a>
+                        <p style='display: inline;'>{{ comment.dislikes.count }}</p>
+                    </div>
+                {% endfor %}
+                
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

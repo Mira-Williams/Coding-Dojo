@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container container-fluid border">
+        <h1>Show</h1><br>
+        <table class="table">
+            <div>
+                <h3>Title: <em>{{ show.title }}</em></h2>        
+            </div><br>
+            <div>
+                <h3>Network: <em>{{ show.network }}</em></h2>        
+            </div><br>
+            <div>
+                <h3>Description: <em>{{ show.description }}</em></h2>        
+            </div><br>
+            <div>
+                <h3>Release Date: <em>{{ show.release_date }}</em></h2>        
+            </div><br>
+            <div>
+                <h3>Last Updated: <em>{{ show.updated_at }}</em></h2>        
+            </div><br>
+            <div>
+                <h3>Now: <em>{{ show.now }}</em></h2>        
+            </div><br>
+            <a href="/edit_show_form/{{ show.id }}" style="margin-right: 10px;">Edit</a><a href="/home">Home</a>
+        </table>
+    </div>
+</body>
+</html>

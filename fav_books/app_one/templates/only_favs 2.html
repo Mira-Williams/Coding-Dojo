@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div class='container pt-4'>
+        <div class='row'>
+            <div class='col-6'>
+                <h2>Welcome, {{ request.session.login_first_name }}</h2>
+                <a href="/logout">Logout</a><br><br>
+
+                <h3>Add Book</h3>
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+                <form action="/create_book" method='post'>
+                    {% csrf_token %}
+                    <label for="title">Title</label><br>
+                    <input type="text" name='title'><br>
+                    <label for="description" class='mt-2'>Description</label><br>
+                    <!-- <input type="text" name='description'><br> -->
+                    <textarea name="description" id="" cols="30" rows="10"></textarea><br>
+                    <button type='submit' class='btn btn-primary'>Submit</button>
+                </form>
+            </div>
+
+            <div class='col-6'>
+                <a href="/main">Show all books</a><br><br>
+                {% for book in fav_books %}
+                    <div class='container border-bottom mb-2 pb-2'>    
+                        <h5><a href="/book/{{ book.id }}">{{ book.title }}</a></h5>
+                        <p>Added by: {{ book.added_by.full_name }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
+
+

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <h1>The current date and time is:</h1>
+    <div>
+        <h2>{{ currDate }}</h2>
+        <h2>{{ currTimeP }} - Pacific</h2>
+        <h2>{{ currTimeM }} - Mountain</h2>
+        <h2>{{ currTimeC }} - Central</h2>
+        <h2>{{ currTimeE }} - Eastern</h2>
+    </div>
+</body> 
+</html>

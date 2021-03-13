@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div class='container mt-4'>
+        <div class='row'>
+            <div class='col-6'>
+                <h1 class='mb-4'><u>{{ book.title }}</u></h1>
+                <h4>Added by: {{ book.added_by.full_name }}</h4>
+                <h4>Added on: {{ book.created_at }}</h4>
+                <h4>Last updated: {{ book.updated_at }}</h4><br>
+
+                <form action="/edit_book/{{ book.id }}" method='post'>
+                    {% csrf_token %}
+                    <h4><label for="description">Description:</label></h4>
+                    <textarea name="description" id="" cols="30" rows="10">{{book.description}}</textarea><br>
+                    <button type='submit' class="btn btn-primary">Submit</button>
+                </form>
+                
+            </div>
+            <div class='col-6 mt-3'>
+                <h4>Favorited by:</h4><br>
+                {% for user in book.favorited_by.all %}
+                    <h4>{{ user.full_name }}</h4>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

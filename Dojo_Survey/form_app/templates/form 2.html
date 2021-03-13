@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dojo Survey</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+</head>
+<body>
+    <h1>Dojo Survey</h1>
+    <form action="/results", method='POST'>
+        {% csrf_token %}
+        <h2>Name: </h2> 
+        <input type="text" name="name">
+        <h2>Language: </h2>
+        <select name="language">
+            <option value="Python">Python</option>
+            <option value="Swift">Swift</option>
+            <option value="Java">Java</option>
+            <option value="C#">C#</option>
+            <option value="Javascript">Javascript</option>
+        </select>
+        <h2>Location: </h2>
+        <select name="location">
+            <option value="Louisville">Louisville</option>
+            <option value="Edinburgh">Edinburgh</option>
+            <option value="Helsinki">Helsinki</option>
+            <option value="UlaanBaatar">Ulaanbaatar</option>
+            <option value="Tenochtitlan">Tenochtitlan</option>
+        </select>
+        <h2>Hobbies / Interests: </h2>
+        <textarea name="hobbies">  
+        </textarea>
+        <h2>By checking the box below, you solemnly swear that everything here is true. <span>also everything you own is now ours</span></h2>
+        <div>
+            <input type="checkbox" name='pass' value='pass' required>
+        </div>
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

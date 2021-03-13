@@ -1,0 +1,26 @@
+h2{
+    margin: 20px;
+    margin-left: 85px;
+}
+
+p{
+    margin-left: 85px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.reset{
+    margin-left: 85px;
+    margin-top: 25px;
+}
+
+.inline{
+    display: inline-block;
+}
+
+.high_score{
+    margin: 0px;
+    margin-top: 25px;
+    margin-left: 20px;
+    vertical-align: bottom;
+}
