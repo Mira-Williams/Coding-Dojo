@@ -8,7 +8,7 @@ class Spaceship:
         self.image = image
         
 
-RED_SPACESHIP = Spaceship('red', 5, False, 55, 40, 'spaceship_red.png')
-YELLOW_SPACESHIP = Spaceship('yellow', 5, False, 55, 40, 'spaceship_yellow.png')
+red_spaceship = Spaceship('red', 5, False, 55, 40, 'spaceship_red.png')
+yellow_spaceship = Spaceship('yellow', 5, False, 55, 40, 'spaceship_yellow.png')
 
 test = 'test 1'
